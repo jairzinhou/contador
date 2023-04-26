@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <style>
+    *{
+      margin:0;
+      padding:0;
+    }
+    
+    h1{
+      font-family:arial;
+      font-weight: normal;
+      font-size:25px;
+      color:rgba(0,0,0,0.7)
+    }
+    
+    .cab img{
+      height:25px;
+    }
+    
+    .cab{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin:10px 30px;
+      
+    }
+   
+    body{
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+    
+    .content{
+      background:linear-gradient(45deg,blue,pink,yellow);
+      width:700px;
+      height:250px;
+      border-radius:10px
+    }
+    .contador{
+      display:flex;
+      justify-content:space-around;
+      align-items:center;
+      height:50%;
+    }
+    .contador .botao{
+      padding:15px;
+      font-size:15px;
+      font-family:arial;
+      color:rgba(100,100,100,0.7);
+      outline:none;
+      border:none;
+      border-radius:10px;
+      width:150px;
+    }
+    .res{
+      display:flex;
+      justify-content:flex-end;
+      align-items:center;
+      margin-right:24px;
+      
+    }
+    .res .calculo{
+      margin-right:20px;
+      padding:20px;
+      background:#9b51e0;
+      border:none;
+      border-radius:5px;
+      font-size:15px;
+      font-family:arial;
+      font-weight:550;
+      color:rgba(0,0,0,0.7);
+      cursor: pointer;
+    }
+    .resultado .calculo:hover{
+      background:rgba(155,70,224)
+    }
+  </style>
+</head>
+<body>
+    <div class='content'>
+      
+      <div class='cab'>
+        <h1>Contador de dias</h1>
+        <div class='img'>
+           <img src='data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjUxMXB0IiB2aWV3Qm94PSItOCAwIDUxMSA1MTEuOTk5MjQiIHdpZHRoPSI1MTFwdCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJtMjgzLjAwMzkwNiAzMDYuMDE5NTMxYy0zOS4zOTQ1MzEtMTUuNzc3MzQzLTcxLjM1OTM3NS00NS44NzUtODkuNDgwNDY4LTg0LjI1bC00LjY4MzU5NC05LjkxMDE1NiAyMy42NTIzNDQtMjMuNjUyMzQ0YzMuMTkxNDA2LTMuMTkxNDA2IDMuMTkxNDA2LTguMzU5Mzc1IDAtMTEuNTUwNzgxbC0zNS4xMzI4MTMtMzUuMTMyODEyYy0zLjUtMy41LTkuMjg5MDYzLTMuMTA5Mzc2LTEyLjMzNTkzNy43ODkwNjItMzEuNTE1NjI2IDQwLjMzOTg0NC0xOS4zNTE1NjMgMTA4Ljc2NTYyNSAyOS43MDMxMjQgMTU3LjgyMDMxMiA0OS4wNTA3ODIgNDkuMDU0Njg4IDExNy40ODA0NjkgNjEuMjE0ODQ0IDE1Ny44MjAzMTMgMjkuNjk5MjE5IDMuODk4NDM3LTMuMDQyOTY5IDQuMjg1MTU2LTguODM1OTM3Ljc4OTA2My0xMi4zMzIwMzFsLTM1LjEzMjgxMy0zNS4xMzI4MTJjLTMuMTkxNDA2LTMuMTkxNDA3LTguMzYzMjgxLTMuMTkxNDA3LTExLjU1NDY4NyAwem0wIDAiLz48cGF0aCBkPSJtNTMuNDg0Mzc1IDUxMmMtMy45NjQ4NDQgMC03Ljg4NjcxOS0xLjMyODEyNS0xMS4wNzgxMjUtMy45MTQwNjItNS4wMTE3MTktNC4wMzUxNTctNy40MjE4NzUtMTAuNDY0ODQ0LTYuMzA4NTk0LTE2Ljc5Mjk2OWwxNi4yNjU2MjUtOTIuNjkxNDA3Yy00MC44Nzg5MDYtNTIuNTUwNzgxLTU4LjQ3NjU2Mi0xMTcuODk4NDM3LTQ5LjYyODkwNi0xODQuOTQ5MjE4IDE0LjMxNjQwNi0xMDguNTUwNzgyIDEwMy41MzUxNTYtMTk3LjUxOTUzMiAyMTIuMTIxMDk0LTIxMS41MzkwNjMgNzYuNDQxNDA2LTkuODc4OTA2IDE1MS41NjI1IDE1LjE5MTQwNyAyMDYuMDYyNSA2OC43NDIxODggNTQuNTExNzE5IDUzLjU1MDc4MSA4MC44ODI4MTIgMTI4LjEyMTA5MyA3Mi4zNzUgMjA0LjYwNTQ2OS0xMi4zMjgxMjUgMTEwLjc2MTcxOC0xMDEuNzY5NTMxIDIwMS44ODI4MTItMjEyLjY2MDE1NyAyMTYuNjc1NzgxLTQ0LjQ2NDg0MyA1LjkxNDA2Mi04OS40NDkyMTgtLjMyODEyNS0xMzAuNjcxODc0LTE4LjE1NjI1bC04OS43OTY4NzYgMzYuNzA3MDMxYy0yLjE1MjM0My44ODI4MTItNC40MTc5NjggMS4zMTI1LTYuNjc5Njg3IDEuMzEyNXptMTY1Ljg5MDYyNS00NzQuODUxNTYyYy05Mi45ODQzNzUgMTItMTY5LjM3NSA4OC4xNzE4NzQtMTgxLjY0MDYyNSAxODEuMTIxMDkzLTcuOTA2MjUgNTkuOTQ5MjE5IDguNzc3MzQ0IDExOC4yNzczNDQgNDYuOTgwNDY5IDE2NC4yMTA5MzggMy4zMTI1IDMuOTk2MDkzIDQuNzEwOTM3IDkuMjQyMTg3IDMuODEyNSAxNC4zNDM3NWwtMTIuMTI4OTA2IDY5LjA3MDMxMiA2Ny4yMTQ4NDMtMjcuNDY0ODQzYzQuNTg1OTM4LTEuODYzMjgyIDkuNzI2NTYzLTEuNzQyMTg4IDE0LjE5MTQwNy4zNjMyODEgMzcuMDAzOTA2IDE3LjM1OTM3NSA3Ny44NjMyODEgMjMuNzAzMTI1IDExOC4xNTYyNSAxOC4zNDM3NSA5NS4wMzUxNTYtMTIuNjcxODc1IDE3MS42NzU3ODEtOTAuNzI2NTYzIDE4Mi4yNDYwOTMtMTg1LjU3NDIxOSA3LjMwMDc4MS02NS42MzY3MTktMTUuMzEyNS0xMjkuNjIxMDk0LTYyLjAzNTE1Ni0xNzUuNTE5NTMxLTQ2LjcxODc1LTQ1LjkxMDE1Ny0xMTEuMTgzNTk0LTY3LjM5NDUzMS0xNzYuNzk2ODc1LTU4Ljg5NDUzMXptLTIuMjU3ODEyLTE3LjUxNTYyNmguMTcxODc0em0wIDAiLz48L3N2Zz4='>
+           <img src='data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjUxMnB0IiB2aWV3Qm94PSItMjEgMCA1MTIgNTEyIiB3aWR0aD0iNTEycHQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0ibTM4OS4zMzIwMzEgMTYwYy00NC4wOTM3NSAwLTgwLTM1Ljg4MjgxMi04MC04MHMzNS45MDYyNS04MCA4MC04MGM0NC4wOTc2NTcgMCA4MCAzNS44ODI4MTIgODAgODBzLTM1LjkwMjM0MyA4MC04MCA4MHptMC0xMjhjLTI2LjQ1MzEyNSAwLTQ4IDIxLjUyMzQzOC00OCA0OHMyMS41NDY4NzUgNDggNDggNDggNDgtMjEuNTIzNDM4IDQ4LTQ4LTIxLjU0Njg3NS00OC00OC00OHptMCAwIi8+PHBhdGggZD0ibTM4OS4zMzIwMzEgNTEyYy00NC4wOTM3NSAwLTgwLTM1Ljg4MjgxMi04MC04MHMzNS45MDYyNS04MCA4MC04MGM0NC4wOTc2NTcgMCA4MCAzNS44ODI4MTIgODAgODBzLTM1LjkwMjM0MyA4MC04MCA4MHptMC0xMjhjLTI2LjQ1MzEyNSAwLTQ4IDIxLjUyMzQzOC00OCA0OHMyMS41NDY4NzUgNDggNDggNDggNDgtMjEuNTIzNDM4IDQ4LTQ4LTIxLjU0Njg3NS00OC00OC00OHptMCAwIi8+PHBhdGggZD0ibTgwIDMzNmMtNDQuMDk3NjU2IDAtODAtMzUuODgyODEyLTgwLTgwczM1LjkwMjM0NC04MCA4MC04MCA4MCAzNS44ODI4MTIgODAgODAtMzUuOTAyMzQ0IDgwLTgwIDgwem0wLTEyOGMtMjYuNDUzMTI1IDAtNDggMjEuNTIzNDM4LTQ4IDQ4czIxLjU0Njg3NSA0OCA0OCA0OCA0OC0yMS41MjM0MzggNDgtNDgtMjEuNTQ2ODc1LTQ4LTQ4LTQ4em0wIDAiLz48cGF0aCBkPSJtMTM1LjcwMzEyNSAyNDAuNDI1NzgxYy01LjU3MDMxMyAwLTEwLjk4ODI4MS0yLjkwMjM0My0xMy45MTAxNTYtOC4wNjI1LTQuMzc1LTcuNjc5Njg3LTEuNzA3MDMxLTE3LjQ1MzEyNSA1Ljk3MjY1Ni0yMS44MjQyMTlsMTk3Ljk1MzEyNS0xMTIuODU1NDY4YzcuNjU2MjUtNC40MTQwNjMgMTcuNDQ5MjE5LTEuNzI2NTYzIDIxLjgwMDc4MSA1Ljk3NjU2MiA0LjM3NSA3LjY3OTY4OCAxLjcwNzAzMSAxNy40NDkyMTktNS45NzI2NTYgMjEuODI0MjE5bC0xOTcuOTUzMTI1IDExMi44NTE1NjNjLTIuNDk2MDk0IDEuNDA2MjUtNS4yMDMxMjUgMi4wODk4NDMtNy44OTA2MjUgMi4wODk4NDN6bTAgMCIvPjxwYXRoIGQ9Im0zMzMuNjMyODEyIDQxNi40MjU3ODFjLTIuNjg3NSAwLTUuMzk4NDM3LS42ODM1OTMtNy44OTQ1MzEtMi4xMDkzNzVsLTE5Ny45NTMxMjUtMTEyLjg1NTQ2OGMtNy42Nzk2ODctNC4zNzEwOTQtMTAuMzQzNzUtMTQuMTQ0NTMyLTUuOTcyNjU2LTIxLjgyNDIxOSA0LjM1MTU2Mi03LjY5OTIxOSAxNC4xMjUtMTAuMzY3MTg4IDIxLjgwNDY4OC01Ljk3MjY1N2wxOTcuOTQ5MjE4IDExMi44NTE1NjNjNy42Nzk2ODggNC4zNzUgMTAuMzQ3NjU2IDE0LjE0NDUzMSA1Ljk3NjU2MyAyMS44MjQyMTktMi45NDUzMTMgNS4xODM1OTQtOC4zNjMyODEgOC4wODU5MzctMTMuOTEwMTU3IDguMDg1OTM3em0wIDAiLz48L3N2Zz4='>
+        </div>
+      </div>
+     
+      <div class='contador'>
+        <input class='botao' type='date' id='data-inicio'>
+        <input class='botao' type='date' id='data-final'>
+        <input class='botao' type='number' id='resultado'>
+      </div>
+      
+      <div class='res'>
+        <input class='calculo' type='button' id='calculando' value='CALCULAR' onclick='clicar()'>        
+        <input class='calculo' type='button' id='limpeza' value='LIMPAR'>    
+      </div>
+
+    </div>
+  
+    
+  
+ 
+  <script>
+    
+    
+    
+    
+    function clicar(){
+      let s1 = window.document.getElementById('data-inicio')
+      let s2 = window.document.getElementById('data-final')
+      let result = window.document.getElementById('resultado')
+      
+      
+      
+    }
+    
+    
+  </script>
+  
+  
+  
+  
+</body>
+</html>
