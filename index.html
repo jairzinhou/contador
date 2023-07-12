@@ -3,84 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>JS Bin</title>
-  <style>
-    *{
-      margin:0;
-      padding:0;
-    }
-    
-    h1{
-      font-family:arial;
-      font-weight: normal;
-      font-size:25px;
-      color:rgba(0,0,0,0.7)
-    }
-    
-    .cab img{
-      height:25px;
-    }
-    
-    .cab{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      margin:10px 30px;
-      
-    }
-   
-    body{
-      height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-    }
-    
-    .content{
-      background:linear-gradient(45deg,blue,pink,yellow);
-      width:700px;
-      height:250px;
-      border-radius:10px
-    }
-    .contador{
-      display:flex;
-      justify-content:space-around;
-      align-items:center;
-      height:50%;
-    }
-    .contador .botao{
-      padding:15px;
-      font-size:15px;
-      font-family:arial;
-      color:rgba(100,100,100,0.7);
-      outline:none;
-      border:none;
-      border-radius:10px;
-      width:150px;
-    }
-    .res{
-      display:flex;
-      justify-content:flex-end;
-      align-items:center;
-      margin-right:24px;
-      
-    }
-    .res .calculo{
-      margin-right:20px;
-      padding:20px;
-      background:#9b51e0;
-      border:none;
-      border-radius:5px;
-      font-size:15px;
-      font-family:arial;
-      font-weight:550;
-      color:rgba(0,0,0,0.7);
-      cursor: pointer;
-    }
-    .resultado .calculo:hover{
-      background:rgba(155,70,224)
-    }
-  </style>
+  <title>Contador de dias oficial</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class='content'>
@@ -94,40 +18,17 @@
       </div>
      
       <div class='contador'>
-        <input class='botao' type='date' id='data-inicio'>
-        <input class='botao' type='date' id='data-final'>
-        <input class='botao' type='number' id='resultado'>
+        <input class='botao' type='date' id='data-inicio' required>
+        <input class='botao' type='date' id='data-final' required>
+        <input class='botao' type='text' id='resultado'>
       </div>
       
       <div class='res'>
-        <input class='calculo' type='button' id='calculando' value='CALCULAR' onclick='clicar()'>        
+        <input class='calculo' type='button' id='calculando' value='CALCULAR'>        
         <input class='calculo' type='button' id='limpeza' value='LIMPAR'>    
       </div>
 
     </div>
-  
-    
-  
- 
-  <script>
-    
-    
-    
-    
-    function clicar(){
-      let s1 = window.document.getElementById('data-inicio')
-      let s2 = window.document.getElementById('data-final')
-      let result = window.document.getElementById('resultado')
-      
-      
-      
-    }
-    
-    
-  </script>
-  
-  
-  
-  
+    <script src="main.js"></script>
 </body>
 </html>
